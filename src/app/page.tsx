@@ -12,7 +12,6 @@ export default function Home() {
   const [list, setList] = useState<Task[]>([]);
   const [search, setSearch] = useState("");
 
-  // Load from localStorage
   useEffect(() => {
     const data = localStorage.getItem("list");
     if (data) {
@@ -20,7 +19,6 @@ export default function Home() {
     }
   }, []);
 
-  // Save to localStorage whenever list changes
   useEffect(() => {
     localStorage.setItem("list", JSON.stringify(list));
   }, [list]);
@@ -28,7 +26,7 @@ export default function Home() {
   function AddItem() {
     if (!search.trim()) return;
     const newTask: Task = {
-      id: Date.now(), // unique id
+      id: Date.now(),
       text: search.trim(),
       completed: false,
     };
